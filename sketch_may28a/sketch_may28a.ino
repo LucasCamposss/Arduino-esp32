@@ -8,7 +8,6 @@ int leitura;
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
   Serial.println("Hello, ESP32!");
   pinMode(pot, INPUT);
@@ -18,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
   //analogRead(pot); 
   // le um valor entre 0 e 4095
   leitura = ((analogRead(pot)-2)/8)-255; 
