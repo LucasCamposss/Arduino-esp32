@@ -1,3 +1,4 @@
+//Código incompleto, só comecei
 const int pot = 34;
 const int motor1 = 25;
 const int motor2 = 33;
