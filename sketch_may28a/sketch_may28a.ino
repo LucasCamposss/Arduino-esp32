@@ -27,22 +27,28 @@ void setup() {
 void loop() {
   // le um valor entre 0 e 4095
   //Serial.println(analogRead(pot));
-  leitura = ((analogRead(pot))/16); 
+  leitura = ((analogRead(pot))/16); //passa a leitura pra um valor entre 0 e 255
   if (leitura <15)
   {
     leitura = 0;
   }
+/*   
+  if (leitura >15)
+  {
+    leitura = 255;
+  }
+  */
   tensao = 0; 
   // tentando melhorar a leitura que está variando muito(fazendo a média das ultimas 100)
   for (int i=0; i<100;i++){
     tensao = tensao + (float(analogRead(motorLeitura)))/100;
-    delay(1);
+    delay(0.05);
   }
   
   tensao = 2*tensao/1241;//passando o valor da leitura binaria de 12 bits para um valor em volts(a leitura é de até 3.3V)
   //multipliquei por 2 pq foi feito um divisor de tensão na entrada da porta usada na leitura 
   Serial.println(tensao);
-  Serial.println(leitura);
+ // Serial.println(leitura);
   //passo o valor de leitura para -255 a 255
   motorPWM(leitura);
 
