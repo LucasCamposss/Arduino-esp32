@@ -1,4 +1,4 @@
-//Código incompleto, só comecei
+//Código de malha aberta
 const int pot = 34;
 const int motor1 = 25;
 const int motor2 = 33;
@@ -38,12 +38,16 @@ void loop() {
     leitura = 255;
   }
   */
-  tensao = 0; 
+  tensao = analogRead(motorLeitura);
+  
+ /* 
+     tensao = 0; 
   // tentando melhorar a leitura que está variando muito(fazendo a média das ultimas 100)
-  for (int i=0; i<100;i++){
-    tensao = tensao + (float(analogRead(motorLeitura)))/100;
+    for (int i=0; i<100;i++){
+      tensao = tensao + (float(analogRead(motorLeitura)))/100;
     delay(0.05);
   }
+*/
   
   tensao = 2*tensao/1241;//passando o valor da leitura binaria de 12 bits para um valor em volts(a leitura é de até 3.3V)
   //multipliquei por 2 pq foi feito um divisor de tensão na entrada da porta usada na leitura 
