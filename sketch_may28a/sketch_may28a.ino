@@ -6,7 +6,7 @@ const int motorLeitura = 35;
 int leitura;
 float tensao;
 // setting PWM properties
-const int freq = 5000;
+const int freq = 30000;
 const int ledChannel = 0;
 const int resolution = 8;
 
@@ -32,14 +32,14 @@ void loop() {
   {
     leitura = 0;
   }
-/*   
+  
+  /* 
   if (leitura >15)
   {
     leitura = 255;
   }
-  */
-  tensao = analogRead(motorLeitura);
-  
+    tensao = analogRead(motorLeitura);
+ */
  /* 
      tensao = 0; 
   // tentando melhorar a leitura que está variando muito(fazendo a média das ultimas 100)
