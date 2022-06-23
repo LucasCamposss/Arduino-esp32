@@ -55,7 +55,6 @@ void loop() {
  // Serial.println(leitura);
   //passo o valor de leitura para -255 a 255
   motorPWM(leitura);
-
 }
 
 
