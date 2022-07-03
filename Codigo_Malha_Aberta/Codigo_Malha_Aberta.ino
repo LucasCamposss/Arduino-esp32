@@ -6,7 +6,7 @@ int leitura;
 float tensao;
 
 
-const int freq = 30000;
+const int freq = 20000;
 const int ledChannel = 0;
 const int resolution = 12;
 
@@ -22,20 +22,25 @@ void setup() {
 }
   
 void loop() {
-  leitura = float((analogRead(pot)));
-  tensao = analogRead(motorLeitura);
+  leitura = analogRead(pot);
+  tensao = float(analogRead(motorLeitura));
   tensao = 2*tensao/1241;
   Serial.println(tensao);
   motorPWM(leitura);
+  
+  
 }
 void motorPWM (int valor)
 {
-    if(valor > 4095){
-      valor = 4095;
+    if(valor > 1000){
+      valor = 4095*0.7;
     }
-    if(valor < 0){
-      valor = 0;
+ 
+    if(valor <= 1000){
+      valor = 4095*0;
     }
+    
+ 
     ledcWrite(ledChannel, valor);
     digitalWrite(motor2,LOW); 
 }
