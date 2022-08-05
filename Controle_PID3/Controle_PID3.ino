@@ -38,25 +38,30 @@ void setup() {
 
   alvo = 3.0;
 //Variando valores encontrados
-  kp = 12.5416;
-  ki = 290.6878;
-  kd = 0.020082;
+//  kp = 1.593;
+//  ki = 30.2;
+//  kd = 0.021;
+  kp = 5.429;
+  ki = 10.59;
+  kd = 0.02;
   //-------------------------
   valorPID = 0;
   erro0 = 0;
   sumErro = 0;
   entrada = 0;
-  T = 0.000114025;
-  TD = 8770;
+  T = 0.000062;
+  TD = 1/T;
   cont = 1;
 }
   
 void loop() {
-  if (cont%2==0){
+  if (cont==2){
     digitalWrite(pinoSaida,LOW);
+    cont = 1;
     }
   else{
     digitalWrite(pinoSaida,HIGH);
+    cont = 2;
     }
 //  if (Serial.available() > 0) {
 //    // lê do buffer o dado recebido:
@@ -65,11 +70,11 @@ void loop() {
 //  if (alvo<=0){
 //    alvo = 0.00001;
 //  }
-  cont = cont + 1;
-  if (cont>20000){
-    cont = 1;
-  }
-  
+//  cont = cont + 1;
+//  if (cont>20000){
+//    cont = 1;
+//  }
+//  
   tensao = float(analogRead(motorLeitura));
   tensao = 2*readADC_Cal(tensao)*0.001;
   

@@ -36,42 +36,29 @@ void setup() {
   ledcSetup(ledChannel, freq, resolution); 
   ledcAttachPin(motor1, ledChannel);
 
-  alvo = 4.0;
-//  kp = 1;
-//  ki = 0;
-//  kd = 0;
+  alvo = 3.0;
 //Variando valores encontrados
-  kp = 12.5416;
-  ki = 290.6878;
-  kd = 0.020082;
+  kp = 9.386;
+  ki = 419.017;
+  kd = 0.05256;
   //-------------------------
-//  kp = 12.5416;
-//  ki = 290.6878;
-//  kd = 0.12082;
-//  kp = 22.2553;
-//  ki = 402.5469;
-//  kd = 0.307604;
-//  kp = 9.386;
-//  ki = 419.017;
-//  kd = 0.05256;
-//  kp = 0.02514;
-//  ki = 0.4602294;
-//  kd = 0.00034355;
   valorPID = 0;
   erro0 = 0;
   sumErro = 0;
   entrada = 0;
-  T = 0.000114025;
-  TD = 8770;
+  T = 0.000062;
+  TD = 1/T;
   cont = 1;
 }
   
 void loop() {
-  if (cont%2==0){
+  if (cont==2){
     digitalWrite(pinoSaida,LOW);
+    cont = 1;
     }
   else{
     digitalWrite(pinoSaida,HIGH);
+    cont = 2;
     }
 //  if (Serial.available() > 0) {
 //    // lê do buffer o dado recebido:
@@ -80,28 +67,11 @@ void loop() {
 //  if (alvo<=0){
 //    alvo = 0.00001;
 //  }
-  cont = cont + 1;
-  if (cont>20000){
-    cont = 1;
-    if (alvo == 4)
-    {
-      alvo = 3;
-    }else
-    {
-      alvo = 4;
-    }
-  }
-  leitura = analogRead(pot);
-  while (leitura<1000)
-  {
-   leitura = analogRead(pot);
-   motorPWM(0); 
-   erro = 0;
-   erro0 = 0;
-   sumErro = 0;
-   delay(1);
-  }
-  
+//  cont = cont + 1;
+//  if (cont>20000){
+//    cont = 1;
+//  }
+//  
   tensao = float(analogRead(motorLeitura));
   tensao = 2*readADC_Cal(tensao)*0.001;
   
